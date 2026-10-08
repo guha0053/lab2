@@ -1,0 +1,361 @@
+/* ======================================== OVERALL ======================================== */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #000;
+    background-color: #f5f3ee;
+    line-height: 1.4;
+}
+
+/* ======================================== HEADER ======================================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 5%;
+    background-color: #f5f3ee;
+}
+
+.logo {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.navigation {
+    display: flex;
+    gap: 30px;
+}
+
+.navigation a {
+    color: #000;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.navigation a:hover {
+    color: #7a8068;
+}
+
+/* ======================================== HERO ======================================== */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dark transparent overlay over hero image */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.20);
+}
+
+.hero-content {
+    position: relative;
+    max-width: 900px;
+    padding: 40px;
+    text-align: center;
+}
+
+.hero h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: normal;
+}
+
+/* ======================================== GENERAL SECTIONS ======================================== */
+section {
+    padding: 80px 8%;
+}
+
+.small-title {
+    margin-bottom: 10px;
+    color: #919191;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: normal;
+}
+
+
+
+/* ======================================== LEFT-HAND-SIDE Text = left Image = right ======================================== */
+.left-hand-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.left-hand-side .text-container {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.left-hand-side .image-container {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* ======================================== RIGHT-HAND-SIDE Image = left Text = right ======================================== */
+.right-hand-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.right-hand-side .text-container {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.right-hand-side .image-container {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+/* ======================================== SECTION IMAGES ======================================== */
+.image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ======================================== CENTERED SECTIONS ======================================== */
+.centered-side {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.centered-side ul {
+    display: inline-block;
+    text-align: left;
+    margin-top: 20px;
+}
+
+/* ======================================== PORTFOLIO GALLERY ======================================== */
+
+
+#portfolio>p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.gallery img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+/* ======================================== BUTTONS ======================================== */
+.button,
+button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    border: none;
+    background-color: #7a8068;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover,
+button:hover {
+    background-color: #4f5543;
+}
+
+/* ======================================== PRICING TABLE ======================================== */
+table {
+    width: 100%;
+    margin-top: 40px;
+    border-collapse: collapse;
+    background-color: #fff;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #d8d5cc;
+}
+
+th {
+    background-color: #d1cbbb;
+    font-weight: bold;
+}
+
+/* ======================================== CONTACT SECTION ======================================== */
+#contact {
+    background-color: #ebe5db;
+}
+
+form {
+    max-width: 600px;
+    margin: 40px 0 0 0;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #c8c6bd;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* ======================================== KEYBOARD ACCESSIBILITY ======================================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #7a8068;
+    outline-offset: 3px;
+}
+
+/* ======================================== FOOTER ======================================== */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 5%;
+    background-color: #919191;
+    font-size: 12px;
+}
+
+footer a {
+    color: #000;
+}
+
+/* ======================================== MOBILE / RESPONSIVE ======================================== */
+@media (max-width: 768px) {
+
+    /* Header */
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .navigation {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 60vh;
+    }
+
+    .hero-content {
+        padding: 25px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    /* Sections */
+    section {
+        padding: 60px 6%;
+    }
+
+    h2 {
+        font-size: 34px;
+    }
+
+    /* Left and right sections become one column */
+    .left-hand-side,
+    .right-hand-side {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .left-hand-side .text-container,
+    .left-hand-side .image-container,
+    .right-hand-side .text-container,
+    .right-hand-side .image-container {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    /* Portfolio */
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    /* Pricing table */
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 10px 8px;
+    }
+
+    /* Footer */
+    footer {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+}
