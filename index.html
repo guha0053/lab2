@@ -241,56 +241,61 @@
         </section>
 
 
-        <!-- Contact -->
+        <!-- HERE ARE THE FEEDBACK FORM -->
         <section id="contact" class="centered-side">
 
             <p class="small-title">Contact</p>
 
             <h2>
-                Get in touch
+                My portfolio feedback
             </h2>
 
             <p>
-                Don't hesitate to contact me with your mission or question.
+                Don't hesitate to give me feedback on my portfolio.
             </p>
 
             <form>
-    <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="Name" required>
-    </div>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="Name">
+                    <div id="name-error" class="field-error"></div>
+                </div>
 
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="Email" required>
-    </div>
+                <div class="form-group" 
+                <label for="email">Email</label>
+                    <input type="email" id="email" name="Email">
+                    <div id="email-error" class="field-error"></div>
+                </div>
 
-    <div class="form-group">
-        <label for="topic">Topic of Interest</label>
-        <select id="topic" name="Topic" required>
-            <option value="">Choose a topic</option>
-            <option value="portrait">Portrait photography</option>
-            <option value="wedding">Wedding photography</option>
-            <option value="automotive">Automotive photography</option>
-            <option value="creative">Creative projects</option>
-        </select>
-    </div>
+                <div class="form-group">
+                    <label for="topic">Topic of Interest</label>
+                    <select id="topic" name="Topic">
+                        <option value="">Choose a topic</option>
+                        <option value="portrait">Portrait photography</option>
+                        <option value="wedding">Wedding photography</option>
+                        <option value="automotive">Automotive photography</option>
+                        <option value="creative">Creative projects</option>
+                    </select>
+                    <div id="topic-error" class="field-error"></div>
+                </div>
 
-    <div class="form-group">
-        <label for="comments">Comments</label>
-        <textarea id="comments" name="Comments" rows="5" required></textarea>
-    </div>
+                <div class="form-group">
+                    <label for="comments">Comments</label>
+                    <textarea id="comments" name="Comments" rows="5"></textarea>
+                    <div id="comments-error" class="field-error"></div>
+                </div>
 
-    <div class="form-group">
-        <label for="website">Website (optional)</label>
-        <input type="url" id="website" name="Website">
-    </div>
+                <div class="form-group">
+                    <label for="website">Website (optional)</label>
+                    <input type="url" id="website" name="Website">
+                    <div id="website-error" class="field-error"></div>
+                </div>
 
-    <div class="form-group">
-        <button type="submit">Send message</button>
-        <button type="reset">Clear</button>
-    </div>
-</form>
+                <div class="form-group">
+                    <button type="submit">Send message</button>
+                    <button type="reset">Clear</button>
+                </div>
+            </form>
 
         </section>
 
