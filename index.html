@@ -254,36 +254,43 @@
                 Don't hesitate to contact me with your mission or question.
             </p>
 
-            <form action="mailto:hej@gustavhasselgren.se" method="post" enctype="text/plain">
-                <div class="form-group">
-                    <label for="name">
-                        Name
-                    </label>
+            <form>
+    <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="Name" required>
+    </div>
 
-                    <input type="text" id="name" name="Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">
-                        Email
-                    </label>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="Email" required>
+    </div>
 
-                    <input type="email" id="email" name="Email" required>
-                </div>
-                <div class="form-group">
+    <div class="form-group">
+        <label for="topic">Topic of Interest</label>
+        <select id="topic" name="Topic" required>
+            <option value="">Choose a topic</option>
+            <option value="portrait">Portrait photography</option>
+            <option value="wedding">Wedding photography</option>
+            <option value="automotive">Automotive photography</option>
+            <option value="creative">Creative projects</option>
+        </select>
+    </div>
 
-                    <label for="message">
-                        Message
-                    </label>
+    <div class="form-group">
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="Comments" rows="5" required></textarea>
+    </div>
 
-                    <textarea id="message" name="Message" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
+    <div class="form-group">
+        <label for="website">Website (optional)</label>
+        <input type="url" id="website" name="Website">
+    </div>
 
-                    <button type="submit">
-                        Send message
-                    </button>
-                </div>
-            </form>
+    <div class="form-group">
+        <button type="submit">Send message</button>
+        <button type="reset">Clear</button>
+    </div>
+</form>
 
         </section>
 
