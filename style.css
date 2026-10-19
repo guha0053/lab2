@@ -359,3 +359,17 @@ footer a {
         text-align: center;
     }
 }
+
+
+/* ======================================== Character Counter Colour ======================================== */
+#comments-character-counter {
+    transition: color 0.3s ease;
+}
+
+#comments-character-counter.error {
+    color: red;
+}
+
+#comments-character-counter.valid {
+    color: green;
+}

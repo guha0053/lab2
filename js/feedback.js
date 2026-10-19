@@ -1,6 +1,7 @@
 //--------------VARIABLES goes here------------------//
 
 // Form input fields
+const mainForm = document.querySelector("form");
 const nameInput = document.querySelector("#name");
 const emailInput = document.querySelector("#email");
 const topicInput = document.querySelector("#topic");
@@ -53,6 +54,7 @@ function validateEmail() {
     emailError.textContent = "";
     return true;
 };
+// Validate if a topic is selected from the dropdown menu.
 function validateTopic() {
     const topic = topicInput.value;
 
@@ -64,12 +66,45 @@ function validateTopic() {
     topicError.textContent = "";
     return true;
 };
+// Validate if the comments input is over 15 letters long.
+function validateComments() {
+    const comments = commentsInput.value.trim();
 
-// Prevent that the page is reloaded and trigger form submission message
-document.querySelector("form").addEventListener("submit", function(event) {
+    if (comments.length < 15) {
+        commentsError.textContent =
+            "Comments must be at least 15 characters long.";
+        return false;
+    }
+
+    commentsError.textContent = "";
+    return true;
+};
+// Live counter of the characters in the comments input field.
+function updateCommentsCounter() {
+    const comments = commentsInput.value.trim();
+    const characterCount = comments.length;
+
+    commentsCounter.textContent =
+        `${characterCount} characters. Minimum 15 characters.`;
+
+    if (characterCount < 15) {
+        commentsCounter.classList.add("error");
+        commentsCounter.classList.remove("valid");
+    } else {
+        commentsCounter.classList.add("valid");
+        commentsCounter.classList.remove("error");
+    }
+};
+
+
+// This is the main sumbit trigger function. It prevents that the page is reloaded and trigger form validation messages.
+mainForm.addEventListener("submit", function(event) {
     event.preventDefault();
     validateFullName();
     validateEmail();
     validateTopic();
+    validateComments();
     console.log("Form is submitted!");
 });
+
+commentsInput.addEventListener("input", updateCommentsCounter);
