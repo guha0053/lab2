@@ -1,3 +1,4 @@
+
 //--------------VARIABLES goes here------------------//
 
 // Form input fields
@@ -24,62 +25,108 @@ const formMessageConfirmation = document.querySelector("#form-message-confirmati
 
 //--------------FUNCTIONS goes here------------------//
 
+// Show an error message and mark the field as invalid.
+function showFieldError(input, errorElement, message) {
+    errorElement.textContent = message;
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+}
 
-// Vaildate if the input for full name is over 2 letters long.
+// Clear the error message and reset the field's validation classes.
+function clearFieldError(input, errorElement) {
+    errorElement.textContent = "";
+    input.classList.remove("is-invalid", "is-valid");
+}
+
+
+// Validate the full name.
 function validateFullName() {
     const name = nameInput.value.trim();
+    const namePattern = /^[\p{L}\p{M} '-]+$/u;
 
     if (name.length < 2) {
-        nameError.textContent = "Name must be at least 2 characters long.";
+        showFieldError(
+            nameInput,
+            nameError,
+            "Name must be at least 2 characters long."
+        );
         return false;
     }
 
-    nameError.textContent = "";
+    if (!namePattern.test(name)) {
+        showFieldError(
+            nameInput,
+            nameError,
+            "Name can only contain letters, spaces, apostrophes and hyphens."
+        );
+        return false;
+    }
+
+    clearFieldError(nameInput, nameError);
+    nameInput.classList.add("is-valid");
     return true;
-};
-// Validate if there is an email filled in and the built in CheckValiday for type email function.
+}
+
+
+// Validate the email address.
 function validateEmail() {
     const email = emailInput.value.trim();
 
     if (email === "") {
-        emailError.textContent = "Email is required.";
+        showFieldError(emailInput, emailError, "Email is required.");
         return false;
     }
 
     if (!emailInput.checkValidity()) {
-        emailError.textContent = "Please enter a valid email address.";
+        showFieldError(
+            emailInput,
+            emailError,
+            "Please enter a valid email address."
+        );
         return false;
     }
 
-    emailError.textContent = "";
+    clearFieldError(emailInput, emailError);
+    emailInput.classList.add("is-valid");
     return true;
-};
-// Validate if a topic is selected from the dropdown menu.
+}
+
+
+// Validate that a topic has been selected.
 function validateTopic() {
     const topic = topicInput.value;
 
     if (topic === "") {
-        topicError.textContent = "Please select a topic.";
+        showFieldError(topicInput, topicError, "Please select a topic.");
         return false;
     }
 
-    topicError.textContent = "";
+    clearFieldError(topicInput, topicError);
+    topicInput.classList.add("is-valid");
     return true;
-};
-// Validate if the comments input is over 15 letters long.
+}
+
+
+// Validate that comments contain at least 15 characters.
 function validateComments() {
     const comments = commentsInput.value.trim();
 
     if (comments.length < 15) {
-        commentsError.textContent =
-            "Comments must be at least 15 characters long.";
+        showFieldError(
+            commentsInput,
+            commentsError,
+            "Comments must be at least 15 characters long."
+        );
         return false;
     }
 
-    commentsError.textContent = "";
+    clearFieldError(commentsInput, commentsError);
+    commentsInput.classList.add("is-valid");
     return true;
-};
-// Live counter of the characters in the comments input field.
+}
+
+
+// Live counter for the comments field.
 function updateCommentsCounter() {
     const comments = commentsInput.value.trim();
     const characterCount = comments.length;
@@ -94,17 +141,90 @@ function updateCommentsCounter() {
         commentsCounter.classList.add("valid");
         commentsCounter.classList.remove("error");
     }
-};
+}
 
 
-// This is the main sumbit trigger function. It prevents that the page is reloaded and trigger form validation messages.
+// Validate the website URL if a value has been entered.
+function validateWebsite() {
+    const website = websiteInput.value.trim();
+
+    // The website field is optional.
+    if (website === "") {
+        clearFieldError(websiteInput, websiteError);
+        return true;
+    }
+
+    if (!websiteInput.checkValidity()) {
+        showFieldError(
+            websiteInput,
+            websiteError,
+            "Please enter a valid website URL."
+        );
+        return false;
+    }
+
+    clearFieldError(websiteInput, websiteError);
+    websiteInput.classList.add("is-valid");
+    return true;
+}
+
+// Clear form if clear button is clicked
+function resetForm() {
+
+    // Clear all error messages
+    clearFieldError(nameInput, nameError);
+    clearFieldError(emailInput, emailError);
+    clearFieldError(topicInput, topicError);
+    clearFieldError(commentsInput, commentsError);
+    clearFieldError(websiteInput, websiteError);
+
+    // Reset validation classes
+    nameInput.classList.remove("is-valid", "is-invalid");
+    emailInput.classList.remove("is-valid", "is-invalid");
+    topicInput.classList.remove("is-valid", "is-invalid");
+    commentsInput.classList.remove("is-valid", "is-invalid");
+    websiteInput.classList.remove("is-valid", "is-invalid");
+
+    // Reset the character counter
+    commentsCounter.textContent =
+        "0 characters. Minimum 15 characters.";
+    commentsCounter.classList.remove("error","valid");
+
+    // Clear the confirmation message
+    formMessageConfirmation.textContent = "";
+}
+
+
+// Main form submission handler.
 mainForm.addEventListener("submit", function(event) {
     event.preventDefault();
-    validateFullName();
-    validateEmail();
-    validateTopic();
-    validateComments();
+
+    // Run every validator, even if an earlier field is invalid.
+    const isNameValid = validateFullName();
+    const isEmailValid = validateEmail();
+    const isTopicValid = validateTopic();
+    const areCommentsValid = validateComments();
+    const isWebsiteValid = validateWebsite();
+
+    // Stop if any field is invalid.
+    if (
+        !isNameValid ||
+        !isEmailValid ||
+        !isTopicValid ||
+        !areCommentsValid ||
+        !isWebsiteValid
+    ) {
+        return;
+    }
+
     console.log("Form is submitted!");
 });
 
+
+// Update the comments counter whenever the user types.
 commentsInput.addEventListener("input", updateCommentsCounter);
+
+// Reset the form when the reset event is triggered.
+mainForm.addEventListener("reset", function() {
+    resetForm();
+});

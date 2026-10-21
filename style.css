@@ -265,6 +265,7 @@ form {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
 textarea:focus-visible {
     outline: 3px solid #7a8068;
     outline-offset: 3px;
@@ -372,4 +373,13 @@ footer a {
 
 #comments-character-counter.valid {
     color: green;
+}
+
+/* ======================================== Valid Input Colour logic ======================================== */
+.is-invalid {
+    border: 2px solid red !important;
+}
+
+.is-valid {
+    border: 2px solid green !important;
 }
