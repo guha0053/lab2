@@ -168,8 +168,8 @@ function validateWebsite() {
     return true;
 }
 
-// Clear form if clear button is clicked
-function resetForm() {
+// Clear form messages if clear button is clicked or if submission is successful.
+function resetForm(clearConfirmation = true) {
 
     // Clear all error messages
     clearFieldError(nameInput, nameError);
@@ -185,18 +185,20 @@ function resetForm() {
     commentsInput.classList.remove("is-valid", "is-invalid");
     websiteInput.classList.remove("is-valid", "is-invalid");
 
-    // Reset the character counter
+    // Reset the character counter to 0
     commentsCounter.textContent =
         "0 characters. Minimum 15 characters.";
-    commentsCounter.classList.remove("error","valid");
+    commentsCounter.classList.remove("error", "valid");
 
-    // Clear the confirmation message
-    formMessageConfirmation.textContent = "";
+    // Clear the confirmation message but only if the clearConfirmation parameter is true (default).
+    if (clearConfirmation) {
+        formMessageConfirmation.textContent = "";
+    }
 }
 
 
-// Main form submission handler.
-mainForm.addEventListener("submit", function(event) {
+// Main form changes when submit is clicked. Prevent the default form submission and validate all fields.
+mainForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     // Run every validator, even if an earlier field is invalid.
@@ -217,6 +219,22 @@ mainForm.addEventListener("submit", function(event) {
         return;
     }
 
+    // If all fields are valid, show a success message with the submitted name.
+    const submittedName = nameInput.value.trim();
+    formMessageConfirmation.textContent =
+        `Thanks for your feedback, ${submittedName}!`;
+
+    // Remove the success message after 4 seconds
+    setTimeout(function () {
+        formMessageConfirmation.textContent = "";
+    }, 4000);
+
+
+    // Reset all form fields and validation states
+    mainForm.reset();
+    // adding false parameter to prevent clearing the confirmation message immediately after submission
+    resetForm(false);
+
     console.log("Form is submitted!");
 });
 
@@ -224,7 +242,9 @@ mainForm.addEventListener("submit", function(event) {
 // Update the comments counter whenever the user types.
 commentsInput.addEventListener("input", updateCommentsCounter);
 
-// Reset the form when the reset event is triggered.
-mainForm.addEventListener("reset", function() {
+// Reset the form when the clear button is clicked. This will also clear the confirmation message.
+const clearButton = document.querySelector('button[type="reset"]');
+clearButton.addEventListener("click", function () {
     resetForm();
+    console.log("Form is cleared by the clear button!");
 });
